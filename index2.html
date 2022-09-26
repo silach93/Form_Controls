@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+        const variants = [2,8,16,36];
+
+        function Select(){
+            const [value, setValue] = React.useState(0);
+            const [int, setInt] = React.useState('');
+
+            function calculate(event) {
+                const chislo = Number(event.target.value)
+                setText(event.target.value);
+            }
+            return <>
+                <input type="number" onChange={calculate}/>
+                в 10-ной системе <br/>
+                <input type="number" value="text"/> в
+                <select onChange={e=> setValue(e.target.value)}>
+                    {variants.map((variant, index) =>
+                        <option key={index} value={index}>
+                            {variant}
+                        </option>
+                    )}
+                   /*/ системе/*/
+                </select>
+                {int.toString(variants[value])}
+            </>
+        }
+
+        ReactDOM.render(<Select/>, document.getElementById('root'));
+    </script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
